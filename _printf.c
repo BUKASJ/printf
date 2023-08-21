@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * my_printf: printf function
+ * _printf: printf function
  * main: main fuction
+ * Return: always 0
  */
 
-void my_printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 va_list args;
 va_start(args, format);
@@ -53,6 +54,6 @@ int main(void)
 int num = 42;
 char letter = 'A';
 char string[] = "Hello, world!";
-my_printf("Number: %d\nCharacter: %c\nString: %s\n", num, letter, string);
+_printf("Number: %d\nCharacter: %c\nString: %s\n", num, letter, string);
 return (0);
 }
