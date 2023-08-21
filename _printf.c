@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include "main.h"
+int _printf(const char *format, ...);
 /**
  * _printf: printf function
  * main: main fuction
- * Return: always 0
+ * @format: format.
+ * Return: Printed chars
  */
 
 int _printf(const char *format, ...)
