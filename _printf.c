@@ -1,62 +1,62 @@
-#include <stdio.h>
 #include <stdarg.h>
-#include "main.h"
-int _printf(const char *format, ...);
+#include <unistd.h>
 /**
- * _printf: printf function
- * main: main fuction
- * @format: format.
- * Return: Printed chars
+ * main: main function
+ * _putchar: vdfcdsbfcjb
+ * _printf: sdjhcdsfh
+ * Return: printed chars
  */
 
+int _putchar(char c)
+{
+return write(1, &c, 1);
+}
 int _printf(const char *format, ...)
 {
 va_list args;
 va_start(args, format);
-
-while (*format != '\0')
+int count = 0;
+const char *c = format;
+while (*c != '\0')
 {
-if (*format == '%')
+if (*c == '%')
 {
-format++;
-
-switch (*format)
+c++;
+if (*c == 'c')
 {
-case 'c':
-	{
-char c = (char) va_arg(args, int);
-putchar(c);
-break;
+char ch = va_arg(args, int);
+_putchar(ch);
+count++;
 }
-case 'd':
+else if (*c == 's')
 {
-int d = va_arg(args, int);
-printf("%d", d);
-break;
-}
-case 's':
+char *str = va_arg(args, char *);
+for (int i = 0; str[i] != '\0'; i++)
 {
-char *s = va_arg(args, char *);
-printf("%s", s);
-break;
+_putchar(str[i]);
+count++;
 }
-default:
-putchar(*format);
+}
+else if (*c == '%')
+{
+_putchar('%');
+count++;
 }
 }
 else
 {
-putchar(*format);
+_putchar(*c);
+count++;
 }
-format++;
+c++;
 }
 va_end(args);
+return count;
 }
-int main(void)
+int main()
 {
-int num = 42;
-char letter = 'A';
-char string[] = "Hello, world!";
-_printf("Number: %d\nCharacter: %c\nString: %s\n", num, letter, string);
-return (0);
+_printf("Hello, %s!\n", "world");
+_printf("Character: %c\n", 'A');
+_printf("Escaped percent: %%\n");
+return 0;
 }
